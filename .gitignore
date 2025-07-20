@@ -44,9 +44,6 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# GitHub Copilot and development files
-.github/
-
 # Development and test files
 test_coverage/
 coverage/
