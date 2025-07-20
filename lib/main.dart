@@ -13,11 +13,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Employee Attendance & Tasks',
       theme: ThemeData(
+        // Using indigo as primary color for professional look
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF6366F1), // Indigo
+          seedColor: const Color(0xFF6366F1),
           brightness: Brightness.light,
         ),
         useMaterial3: true,
+        // Custom card styling for better visual appeal
         cardTheme: CardThemeData(
           elevation: 2,
           shadowColor: Colors.black.withOpacity(0.1),
@@ -25,6 +27,7 @@ class MyApp extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
         ),
+        // Button theme for consistency
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             elevation: 2,

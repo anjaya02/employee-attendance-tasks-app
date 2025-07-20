@@ -26,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  // Debug feature: simulate error for testing error handling
   void _showSimulateErrorDialog() {
     showDialog(
       context: context,
@@ -46,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 setState(() {
                   _simulateError = true;
                 });
-                // Show error after a delay
+                // Delay before showing error message
                 Future.delayed(const Duration(milliseconds: 500), () {
                   if (mounted) {
                     _showErrorMessage(
@@ -66,6 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  // Display error message to user via snackbar
   void _showErrorMessage(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(

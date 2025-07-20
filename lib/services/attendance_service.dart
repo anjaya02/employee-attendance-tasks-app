@@ -4,22 +4,23 @@ import 'package:intl/intl.dart';
 import '../models/attendance_record.dart';
 
 class AttendanceService {
+  // Keys for shared preferences storage
   static const String _nameKey = 'employee_name';
   static const String _attendanceKey = 'attendance_records';
 
-  // Save employee name
+  // Save employee name to local storage
   static Future<void> saveEmployeeName(String name) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_nameKey, name);
   }
 
-  // Get employee name
+  // Retrieve employee name from local storage
   static Future<String?> getEmployeeName() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString(_nameKey);
   }
 
-  // Save attendance records
+  // Save all attendance records as JSON array
   static Future<void> saveAttendanceRecords(
     List<AttendanceRecord> records,
   ) async {
@@ -28,13 +29,13 @@ class AttendanceService {
     await prefs.setString(_attendanceKey, jsonEncode(recordsJson));
   }
 
-  // Get all attendance records
+  // Retrieve all attendance records from storage
   static Future<List<AttendanceRecord>> getAttendanceRecords() async {
     final prefs = await SharedPreferences.getInstance();
     final recordsString = prefs.getString(_attendanceKey);
 
     if (recordsString == null) {
-      return [];
+      return []; // Return empty list if no records exist
     }
 
     try {
@@ -45,11 +46,12 @@ class AttendanceService {
           )
           .toList();
     } catch (e) {
+      // Return empty list if JSON parsing fails
       return [];
     }
   }
 
-  // Get today's attendance record
+  // Get today's attendance record if it exists
   static Future<AttendanceRecord?> getTodaysRecord() async {
     final records = await getAttendanceRecords();
     final today = DateFormat('MM/dd/yyyy').format(DateTime.now());
@@ -57,6 +59,7 @@ class AttendanceService {
     try {
       return records.firstWhere((record) => record.date == today);
     } catch (e) {
+      // Return null if no record found for today
       return null;
     }
   }

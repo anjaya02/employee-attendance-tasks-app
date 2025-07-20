@@ -1,7 +1,9 @@
 import 'package:intl/intl.dart';
 
+// Task priority levels
 enum Priority { low, medium, high }
 
+// Task status options
 enum TaskStatus { notStarted, inProgress, done }
 
 class Task {
@@ -19,12 +21,12 @@ class Task {
     required this.status,
   });
 
-  // Format due date to MM/DD/YYYY
+  // Format due date to MM/DD/YYYY as required
   String get formattedDueDate {
     return DateFormat('MM/dd/yyyy').format(dueDate);
   }
 
-  // Get priority as string
+  // Convert priority enum to readable string
   String get priorityString {
     switch (priority) {
       case Priority.low:

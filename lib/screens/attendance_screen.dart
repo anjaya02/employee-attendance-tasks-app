@@ -10,6 +10,7 @@ class AttendanceScreen extends StatefulWidget {
 }
 
 class _AttendanceScreenState extends State<AttendanceScreen> {
+  // Controllers and state variables
   final TextEditingController _nameController = TextEditingController();
   String? _employeeName;
   AttendanceRecord? _todaysRecord;
@@ -19,9 +20,11 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
   @override
   void initState() {
     super.initState();
+    // Load data when screen initializes
     _loadData();
   }
 
+  // Load attendance data from storage
   Future<void> _loadData() async {
     setState(() {
       _isLoading = true;
